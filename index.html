@@ -13,17 +13,22 @@
 <style>
 
 *{
-    box-sizing:border-box;
+box-sizing:border-box;
 }
 
 
-body{
+html,body{
 
-    margin:0;
+margin:0;
+padding:0;
 
-    font-family:'Segoe UI',Arial,sans-serif;
+width:100%;
 
-    background:#43a047;
+font-family:'Segoe UI',Arial,sans-serif;
+
+background:#43a047;
+
+overflow-x:hidden;
 
 }
 
@@ -32,95 +37,103 @@ body{
 
 header{
 
-    background:#1b5e20;
+background:linear-gradient(135deg,#1b5e20,#2e7d32);
 
-    color:white;
+color:white;
 
-    text-align:center;
+text-align:center;
 
-    padding:30px 15px;
+padding:30px 15px;
 
-    border-bottom-left-radius:35px;
+border-bottom-left-radius:35px;
 
-    border-bottom-right-radius:35px;
+border-bottom-right-radius:35px;
 
-    box-shadow:0 5px 15px rgba(0,0,0,.3);
+box-shadow:0 5px 15px rgba(0,0,0,.3);
 
 }
 
 
 header h1{
 
-    margin:0;
+margin:0;
 
-    font-size:30px;
+font-size:30px;
 
 }
 
 
 header p{
 
-    margin:10px 0 0;
+margin:10px 0 0;
+
+font-size:16px;
 
 }
 
 
 
-/* SEARCH */
+/* CARIAN */
 
 .search-box{
 
-    width:90%;
+display:block;
 
-    max-width:600px;
+width:90%;
 
-    margin:25px auto;
+max-width:600px;
 
-    display:block;
+margin:25px auto;
 
-    padding:15px 20px;
+padding:15px 20px;
 
-    border-radius:30px;
+border:none;
 
-    border:none;
+border-radius:30px;
 
-    font-size:16px;
+font-size:16px;
+
+outline:none;
 
 }
 
 
 
-/* CONTAINER */
+/* KAWASAN SENARAI */
 
 .container{
 
-    width:90%;
+width:92%;
 
-    max-width:800px;
+max-width:800px;
 
-    margin:auto;
+margin:auto;
+
+padding-bottom:30px;
 
 }
 
 
 
-/* KATEGORI */
+/* TAJUK KATEGORI */
 
 .kategori{
 
-    background:#1b5e20;
+background:#1b5e20;
 
-    color:white;
+color:white;
 
-    padding:12px 20px;
+padding:13px 18px;
 
-    border-radius:15px;
+border-radius:15px;
 
-    margin-top:25px;
+margin-top:25px;
 
-    font-size:20px;
+font-size:20px;
 
-    font-weight:bold;
+font-weight:bold;
+
+box-shadow:0 3px 8px rgba(0,0,0,.2);
 
 }
 
@@ -130,15 +143,24 @@ header p{
 
 .card{
 
-    background:white;
+background:white;
 
-    margin-top:12px;
+margin-top:12px;
 
-    padding:18px;
+padding:18px;
 
-    border-radius:20px;
+border-radius:20px;
 
-    box-shadow:0 5px 15px rgba(0,0,0,.25);
+box-shadow:0 5px 15px rgba(0,0,0,.25);
+
+transition:.2s;
+
+}
+
+
+.card:active{
+
+transform:scale(.98);
 
 }
 
@@ -146,41 +168,45 @@ header p{
 
 .card a{
 
-    text-decoration:none;
+display:flex;
 
-    color:#1b5e20;
+align-items:center;
 
-    display:flex;
+text-decoration:none;
 
-    align-items:center;
+color:#1b5e20;
 
-    font-size:19px;
+font-size:19px;
 
-    font-weight:600;
+font-weight:600;
 
 }
 
 
 
+/* IKON */
+
 .icon{
 
-    width:50px;
+width:50px;
 
-    height:50px;
+height:50px;
 
-    background:#c8e6c9;
+border-radius:50%;
 
-    border-radius:50%;
+background:#c8e6c9;
 
-    display:flex;
+display:flex;
 
-    align-items:center;
+justify-content:center;
 
-    justify-content:center;
+align-items:center;
 
-    font-size:28px;
+font-size:28px;
 
-    margin-right:15px;
+margin-right:15px;
+
+flex-shrink:0;
 
 }
 
@@ -188,13 +214,61 @@ header p{
 
 footer{
 
-    text-align:center;
+text-align:center;
 
-    color:white;
+color:white;
 
-    padding:25px;
+padding:25px;
 
-    font-size:14px;
+font-size:14px;
+
+}
+
+
+
+/* TELEFON KECIL */
+
+@media(max-width:600px){
+
+
+header h1{
+
+font-size:24px;
+
+}
+
+
+header p{
+
+font-size:14px;
+
+}
+
+
+.card a{
+
+font-size:17px;
+
+}
+
+
+.icon{
+
+width:45px;
+
+height:45px;
+
+font-size:24px;
+
+}
+
+
+.kategori{
+
+font-size:18px;
+
+}
+
 
 }
 
@@ -206,9 +280,7 @@ footer{
 </head>
 
 
-
 <body>
-
 
 
 <header>
@@ -218,7 +290,6 @@ footer{
 <p>Panduan Lokasi Dalam Sekolah</p>
 
 </header>
-
 
 
 <input 
@@ -232,267 +303,8 @@ onkeyup="cari(this.value)">
 <div class="container" id="paparan"></div>
 
 
-
 <footer>
 
 SK Mawar | Navigator Digital Sekolah
 
 </footer>
-
-
-
-
-<script>
-
-
-const lokasi=[
-
-
-{
-kategori:"🏢 Pentadbiran",
-nama:"Pejabat Sekolah",
-ikon:"🏢",
-gambar:"lantai1_pejabat.png"
-},
-
-{
-kategori:"🏢 Pentadbiran",
-nama:"Bilik Guru",
-ikon:"👨‍🏫",
-gambar:"lantai2_bilik_guru.png"
-},
-
-{
-kategori:"🏢 Pentadbiran",
-nama:"Bilik Mesyuarat",
-ikon:"📝",
-gambar:"lantai1_bilik_mesyuarat.png"
-},
-
-
-{
-kategori:"📚 Akademik",
-nama:"Bilik ICT",
-ikon:"💻",
-gambar:"lantai1_bilik_ict.png"
-},
-
-{
-kategori:"📚 Akademik",
-nama:"Bilik Pemulihan",
-ikon:"📖",
-gambar:"lantai1_bilik_pemulihan.png"
-},
-
-{
-kategori:"📚 Akademik",
-nama:"Bilik Sains",
-ikon:"🔬",
-gambar:"lantai_bawah_bilik_sains.png"
-},
-
-{
-kategori:"📚 Akademik",
-nama:"Pusat Sumber",
-ikon:"📚",
-gambar:"lantai3_pusat_sumber.png"
-},
-
-
-{
-kategori:"🏫 Kelas",
-nama:"Tahun 1 Genius",
-ikon:"1️⃣",
-gambar:"lantai1_kelas_1_genius.png"
-},
-
-{
-kategori:"🏫 Kelas",
-nama:"Tahun 1 Intelek",
-ikon:"1️⃣",
-gambar:"lantai1_kelas_1_intelek.png"
-},
-
-{
-kategori:"🏫 Kelas",
-nama:"Tahun 1 Pintar",
-ikon:"1️⃣",
-gambar:"lantai1_kelas_1_pintar.png"
-},
-
-{
-kategori:"🏫 Kelas",
-nama:"Tahun 3 Intelek",
-ikon:"3️⃣",
-gambar:"lantai1_kelas-3_intelek.png"
-},
-
-{
-kategori:"🏫 Kelas",
-nama:"Tahun 2",
-ikon:"2️⃣",
-gambar:"lantai2_kelas_tahun_2.png"
-},
-
-{
-kategori:"🏫 Kelas",
-nama:"Tahun 3 Genius",
-ikon:"3️⃣",
-gambar:"lantai2_kelas_tahun_3_genius.png"
-},
-
-{
-kategori:"🏫 Kelas",
-nama:"Tahun 4",
-ikon:"4️⃣",
-gambar:"lantai2_kelas_tahun_4.png"
-},
-
-{
-kategori:"🏫 Kelas",
-nama:"Tahun 5",
-ikon:"5️⃣",
-gambar:"lantai2_kelas_tahun_5.png"
-},
-
-{
-kategori:"🏫 Kelas",
-nama:"Tahun 6",
-ikon:"6️⃣",
-gambar:"lantai3_tahun_6.png"
-},
-
-{
-kategori:"🏫 Kelas",
-nama:"Tahun 6 Pintar",
-ikon:"6️⃣",
-gambar:"lantai_bawah_kelas_6_pintar.png"
-},
-
-
-{
-kategori:"🏥 Kemudahan",
-nama:"Bilik Kesihatan",
-ikon:"🏥",
-gambar:"lantai_bawah_bilik_kesihatan.png"
-},
-
-{
-kategori:"🏥 Kemudahan",
-nama:"Bilik SPBT",
-ikon:"📦",
-gambar:"lantai_bawah_bilik_spbt.png"
-},
-
-{
-kategori:"🏥 Kemudahan",
-nama:"Surau",
-ikon:"🕌",
-gambar:"lantai_bawah_surau.png"
-},
-
-{
-kategori:"🏥 Kemudahan",
-nama:"Kantin",
-ikon:"🍽️",
-gambar:"kantin.png"
-}
-
-
-];
-
-
-
-
-function paparkan(data){
-
-
-let hasil="";
-
-let kategori="";
-
-
-data.forEach(item=>{
-
-
-if(item.kategori!==kategori){
-
-kategori=item.kategori;
-
-
-hasil+=`
-
-<div class="kategori">
-
-${kategori}
-
-</div>
-
-`;
-
-}
-
-
-
-hasil+=`
-
-<div class="card">
-
-<a href="destinasi.html?gambar=${item.gambar}">
-
-<div class="icon">
-
-${item.ikon}
-
-</div>
-
-
-${item.nama}
-
-
-</a>
-
-</div>
-
-`;
-
-
-});
-
-
-document.getElementById("paparan").innerHTML=hasil;
-
-
-}
-
-
-
-function cari(teks){
-
-
-teks=teks.toLowerCase();
-
-
-let hasil=lokasi.filter(x=>
-
-x.nama.toLowerCase().includes(teks)
-
-);
-
-
-paparkan(hasil);
-
-
-}
-
-
-
-paparkan(lokasi);
-
-
-</script>
-
-
-</body>
-
-</html>
