@@ -1,168 +1,498 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Navigator SK Mawar</title>
+
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+
+body{
+
+    margin:0;
+
+    font-family:'Segoe UI',Arial,sans-serif;
+
+    background:#43a047;
+
+}
+
+
+/* HEADER */
+
+header{
+
+    background:#1b5e20;
+
+    color:white;
+
+    text-align:center;
+
+    padding:30px 15px;
+
+    border-bottom-left-radius:35px;
+
+    border-bottom-right-radius:35px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+
+}
+
+
+header h1{
+
+    margin:0;
+
+    font-size:30px;
+
+}
+
+
+header p{
+
+    margin:10px 0 0;
+
+}
+
+
+
+/* SEARCH */
+
+.search-box{
+
+    width:90%;
+
+    max-width:600px;
+
+    margin:25px auto;
+
+    display:block;
+
+    padding:15px 20px;
+
+    border-radius:30px;
+
+    border:none;
+
+    font-size:16px;
+
+}
+
+
+
+/* CONTAINER */
+
+.container{
+
+    width:90%;
+
+    max-width:800px;
+
+    margin:auto;
+
+}
+
+
+
+/* KATEGORI */
+
+.kategori{
+
+    background:#1b5e20;
+
+    color:white;
+
+    padding:12px 20px;
+
+    border-radius:15px;
+
+    margin-top:25px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+
+
+/* KOTAK LOKASI */
+
+.card{
+
+    background:white;
+
+    margin-top:12px;
+
+    padding:18px;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
+
+}
+
+
+
+.card a{
+
+    text-decoration:none;
+
+    color:#1b5e20;
+
+    display:flex;
+
+    align-items:center;
+
+    font-size:19px;
+
+    font-weight:600;
+
+}
+
+
+
+.icon{
+
+    width:50px;
+
+    height:50px;
+
+    background:#c8e6c9;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:28px;
+
+    margin-right:15px;
+
+}
+
+
+
+footer{
+
+    text-align:center;
+
+    color:white;
+
+    padding:25px;
+
+    font-size:14px;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<header>
+
+<h1>🏫 NAVIGATOR SK MAWAR</h1>
+
+<p>Panduan Lokasi Dalam Sekolah</p>
+
+</header>
+
+
+
+<input 
+class="search-box"
+type="text"
+placeholder="🔍 Cari lokasi..."
+onkeyup="cari(this.value)">
+
+
+
+<div class="container" id="paparan"></div>
+
+
+
+<footer>
+
+SK Mawar | Navigator Digital Sekolah
+
+</footer>
+
+
+
+
+<script>
+
+
+const lokasi=[
+
+
+{
+kategori:"🏢 Pentadbiran",
+nama:"Pejabat Sekolah",
+ikon:"🏢",
+gambar:"lantai1_pejabat.png"
+},
+
+{
+kategori:"🏢 Pentadbiran",
+nama:"Bilik Guru",
+ikon:"👨‍🏫",
+gambar:"lantai2_bilik_guru.png"
+},
+
+{
+kategori:"🏢 Pentadbiran",
+nama:"Bilik Mesyuarat",
+ikon:"📝",
+gambar:"lantai1_bilik_mesyuarat.png"
+},
+
+
+{
+kategori:"📚 Akademik",
+nama:"Bilik ICT",
+ikon:"💻",
+gambar:"lantai1_bilik_ict.png"
+},
+
+{
+kategori:"📚 Akademik",
+nama:"Bilik Pemulihan",
+ikon:"📖",
+gambar:"lantai1_bilik_pemulihan.png"
+},
+
+{
+kategori:"📚 Akademik",
+nama:"Bilik Sains",
+ikon:"🔬",
+gambar:"lantai_bawah_bilik_sains.png"
+},
+
+{
+kategori:"📚 Akademik",
+nama:"Pusat Sumber",
+ikon:"📚",
+gambar:"lantai3_pusat_sumber.png"
+},
+
+
+{
+kategori:"🏫 Kelas",
+nama:"Tahun 1 Genius",
+ikon:"1️⃣",
+gambar:"lantai1_kelas_1_genius.png"
+},
+
+{
+kategori:"🏫 Kelas",
+nama:"Tahun 1 Intelek",
+ikon:"1️⃣",
+gambar:"lantai1_kelas_1_intelek.png"
+},
+
+{
+kategori:"🏫 Kelas",
+nama:"Tahun 1 Pintar",
+ikon:"1️⃣",
+gambar:"lantai1_kelas_1_pintar.png"
+},
+
+{
+kategori:"🏫 Kelas",
+nama:"Tahun 3 Intelek",
+ikon:"3️⃣",
+gambar:"lantai1_kelas-3_intelek.png"
+},
+
+{
+kategori:"🏫 Kelas",
+nama:"Tahun 2",
+ikon:"2️⃣",
+gambar:"lantai2_kelas_tahun_2.png"
+},
+
+{
+kategori:"🏫 Kelas",
+nama:"Tahun 3 Genius",
+ikon:"3️⃣",
+gambar:"lantai2_kelas_tahun_3_genius.png"
+},
+
+{
+kategori:"🏫 Kelas",
+nama:"Tahun 4",
+ikon:"4️⃣",
+gambar:"lantai2_kelas_tahun_4.png"
+},
+
+{
+kategori:"🏫 Kelas",
+nama:"Tahun 5",
+ikon:"5️⃣",
+gambar:"lantai2_kelas_tahun_5.png"
+},
+
+{
+kategori:"🏫 Kelas",
+nama:"Tahun 6",
+ikon:"6️⃣",
+gambar:"lantai3_tahun_6.png"
+},
+
+{
+kategori:"🏫 Kelas",
+nama:"Tahun 6 Pintar",
+ikon:"6️⃣",
+gambar:"lantai_bawah_kelas_6_pintar.png"
+},
+
+
+{
+kategori:"🏥 Kemudahan",
+nama:"Bilik Kesihatan",
+ikon:"🏥",
+gambar:"lantai_bawah_bilik_kesihatan.png"
+},
+
+{
+kategori:"🏥 Kemudahan",
+nama:"Bilik SPBT",
+ikon:"📦",
+gambar:"lantai_bawah_bilik_spbt.png"
+},
+
+{
+kategori:"🏥 Kemudahan",
+nama:"Surau",
+ikon:"🕌",
+gambar:"lantai_bawah_surau.png"
+},
+
+{
+kategori:"🏥 Kemudahan",
+nama:"Kantin",
+ikon:"🍽️",
+gambar:"kantin.png"
+}
+
+
+];
+
+
+
+
+function paparkan(data){
+
+
+let hasil="";
+
+let kategori="";
+
+
+data.forEach(item=>{
+
+
+if(item.kategori!==kategori){
+
+kategori=item.kategori;
+
+
+hasil+=`
+
 <div class="kategori">
-🏢 Pentadbiran
+
+${kategori}
+
 </div>
 
+`;
+
+}
+
+
+
+hasil+=`
 
 <div class="card">
-<a href="destinasi.html?gambar=lantai1_pejabat.png">
-<span class="icon">🏢</span> Pejabat Sekolah
+
+<a href="destinasi.html?gambar=${item.gambar}">
+
+<div class="icon">
+
+${item.ikon}
+
+</div>
+
+
+${item.nama}
+
+
 </a>
+
 </div>
 
-
-<div class="card">
-<a href="destinasi.html?gambar=lantai2_bilik_guru.png">
-<span class="icon">👨‍🏫</span> Bilik Guru
-</a>
-</div>
+`;
 
 
-<div class="card">
-<a href="destinasi.html?gambar=lantai1_bilik_mesyuarat.png">
-<span class="icon">📝</span> Bilik Mesyuarat
-</a>
-</div>
+});
+
+
+document.getElementById("paparan").innerHTML=hasil;
+
+
+}
 
 
 
-<div class="kategori">
-📚 Akademik
-</div>
+function cari(teks){
 
 
-<div class="card">
-<a href="destinasi.html?gambar=lantai1_bilik_ict.png">
-<span class="icon">💻</span> Bilik ICT
-</a>
-</div>
+teks=teks.toLowerCase();
 
 
-<div class="card">
-<a href="destinasi.html?gambar=lantai_bawah_bilik_sains.png">
-<span class="icon">🔬</span> Bilik Sains
-</a>
-</div>
+let hasil=lokasi.filter(x=>
+
+x.nama.toLowerCase().includes(teks)
+
+);
 
 
-<div class="card">
-<a href="destinasi.html?gambar=lantai3_pusat_sumber.png">
-<span class="icon">📚</span> Pusat Sumber
-</a>
-</div>
+paparkan(hasil);
 
 
-<div class="card">
-<a href="destinasi.html?gambar=lantai1_bilik_pemulihan.png">
-<span class="icon">📖</span> Bilik Pemulihan
-</a>
-</div>
+}
 
 
 
-<div class="kategori">
-🏫 Kelas
-</div>
+paparkan(lokasi);
 
 
-<div class="card">
-<a href="destinasi.html?gambar=lantai1_kelas_1_genius.png">
-<span class="icon">1️⃣</span> Tahun 1 Genius
-</a>
-</div>
+</script>
 
 
-<div class="card">
-<a href="destinasi.html?gambar=lantai1_kelas_1_intelek.png">
-<span class="icon">1️⃣</span> Tahun 1 Intelek
-</a>
-</div>
+</body>
 
-
-<div class="card">
-<a href="destinasi.html?gambar=lantai1_kelas_1_pintar.png">
-<span class="icon">1️⃣</span> Tahun 1 Pintar
-</a>
-</div>
-
-
-<div class="card">
-<a href="destinasi.html?gambar=lantai1_kelas-3_intelek.png">
-<span class="icon">3️⃣</span> Tahun 3 Intelek
-</a>
-</div>
-
-
-<div class="card">
-<a href="destinasi.html?gambar=lantai2_kelas_tahun_2.png">
-<span class="icon">2️⃣</span> Tahun 2
-</a>
-</div>
-
-
-<div class="card">
-<a href="destinasi.html?gambar=lantai2_kelas_tahun_3_genius.png">
-<span class="icon">3️⃣</span> Tahun 3 Genius
-</a>
-</div>
-
-
-<div class="card">
-<a href="destinasi.html?gambar=lantai2_kelas_tahun_4.png">
-<span class="icon">4️⃣</span> Tahun 4
-</a>
-</div>
-
-
-<div class="card">
-<a href="destinasi.html?gambar=lantai2_kelas_tahun_5.png">
-<span class="icon">5️⃣</span> Tahun 5
-</a>
-</div>
-
-
-<div class="card">
-<a href="destinasi.html?gambar=lantai3_tahun_6.png">
-<span class="icon">6️⃣</span> Tahun 6
-</a>
-</div>
-
-
-<div class="card">
-<a href="destinasi.html?gambar=lantai_bawah_kelas_6_pintar.png">
-<span class="icon">6️⃣</span> Tahun 6 Pintar
-</a>
-</div>
-
-
-
-<div class="kategori">
-🏥 Kemudahan
-</div>
-
-
-<div class="card">
-<a href="destinasi.html?gambar=lantai_bawah_bilik_kesihatan.png">
-<span class="icon">🏥</span> Bilik Kesihatan
-</a>
-</div>
-
-
-<div class="card">
-<a href="destinasi.html?gambar=lantai_bawah_bilik_spbt.png">
-<span class="icon">📦</span> Bilik SPBT
-</a>
-</div>
-
-
-<div class="card">
-<a href="destinasi.html?gambar=lantai_bawah_surau.png">
-<span class="icon">🕌</span> Surau
-</a>
-</div>
-
-
-<div class="card">
-<a href="destinasi.html?gambar=kantin.png">
-<span class="icon">🍽️</span> Kantin
-</a>
-</div>
+</html>
