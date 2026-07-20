@@ -1,19 +1,67 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Destinasi</title>
+<title>Laluan Destinasi</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    text-align:center;
+    background:#f2f2f2;
+    margin:0;
+}
+
+header{
+    background:#00695c;
+    color:white;
+    padding:15px;
+}
+
+img{
+    width:95%;
+    max-width:700px;
+    margin-top:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.3);
+}
+
+a{
+    display:inline-block;
+    margin:20px;
+    padding:12px 20px;
+    background:#00695c;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<h1>Laluan Destinasi</h1>
+<header>
+<h2 id="tajuk"></h2>
+</header>
 
-<img id="gambar" width="100%">
+<img id="gambar">
+
+<br>
+
+<a href="index.html">← Kembali</a>
 
 <script>
 
-const url = new URLSearchParams(window.location.search);
-const gambar = url.get("gambar");
+const data = new URLSearchParams(window.location.search);
 
-document.getElementById("gambar").src = gambar;
+const namaGambar = data.get("gambar");
+
+document.getElementById("gambar").src = namaGambar;
+
+document.getElementById("tajuk").innerHTML =
+namaGambar.replace(".png","").replace(/_/g," ").toUpperCase();
 
 </script>
 
